@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 真题描述：反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
+
+    // 说明: 1 ≤ m ≤ n ≤ 链表长度。
+
+    // 示例:
+    // 输入: 1 -> 2 -> 3 -> 4 -> 5 -> NULL, m = 2, n = 4
+    // 输出: 1 -> 4 -> 3 -> 2 -> 5 -> NULL
+
+    //思路:把指针分成几段移动,当进入到要反转的段中时,那就进行反转
+    //如:1 -> 2 -> 3 -> 4 -> 5 ->6 ->7 -> NULL,从3到5反转
+    /*
+        整体思路:
+        1. 链表操作的本质---对结点的next的操作,也就是配合指针可以拿到每一个结点,然后根据要求进行结点的操作
+        2. 这里是从3到5的反转,细化就是
+            1. 1到2的不变---所以保存2的结点---因为链表的特性:拿到一个结点,就可以知道这个结点及其后面的所有结点信息----leftHead
+            2. 从第3个开始反转,但是第三个反转结束后,next指向了后面,所以,第三个结点的next先不动,也就是我们要从第四个开始反转
+                1. 从第四个开始反转,一直到第5个反转结束.
+                2. 拿到第5个结点       fiveHead
+                3. 在反转前,要保存第3个结点---要设置其next      thrHead
+                4. 拿到反转结束后的第一个正常的结点---第6个结点   sixHead
+            3. 然后,现在的结点顺序就应该是:leftHead ->fiveHead       thrHead ->sixHead
+                1. fiveHead结点其实反转后就是thrHead的头部
+    */
+    function fn(head, m, n) {
+        //将指针移动到要开始反转的前一位
+        var dummy = {
+                val: null,
+                next: head
+            }
+            //创建dummy结点的原因:因为使用了for循环,为了让cur指针按照需求移动.如果不是从dummy结点开始移动,那么会多移动一位
+        var cur = dummy;
+        for (var i = 1; i < m; i++) {
+            cur = cur.next;
+        }
+        //记录下来此时的结点
+        var leftHead = cur;
+        //开始反转---注意第一个结点要避开,因为现在不能进行反转,但是要记录下来
+        var start = cur.next.next;
+        var end = cur.next;
+        var pre = cur.next;
+        var next = null;
+        for (var j = 0; j < n - m; j++) {
+            next = start.next;
+            start.next = pre;
+            pre = start;
+            start = next;
+        }
+        // //记录下此时的反转后的头结点,以及剩下的正常的头结点
+        leftHead.next = pre;
+        end.next = start;
+        return head;
+    }
+
+    function Fm(val) {
+        this.val = val;
+        this.next = null;
+    };
+    var head = new Fm(1);
+    var two = new Fm(2);
+    var thr = new Fm(3);
+    var four = new Fm(4);
+    var five = new Fm(5);
+    head.next = two;
+    two.next = thr;
+    thr.next = four;
+    four.next = five;
+    var newHead = fn(head, 2, 4);
+    console.log(newHead);
+</script>
+
+</html>

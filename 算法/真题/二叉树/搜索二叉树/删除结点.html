@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const root = {
+        val: 6,
+        left: {
+            val: 4,
+            left: {
+                val: 3,
+                left: null,
+                right: null
+            },
+            right: {
+                val: 5
+            }
+        },
+        right: {
+            val: 8,
+            right: {
+                val: 9
+            },
+            left: {
+                val: 7,
+            }
+        }
+    };
+
+    function deleteRoot(root, key) {
+        if (!root) {
+            return null
+        }
+        //找到结点
+        if (root.val === key) {
+            //1. 如果当前结点没有左右子结点
+            if (!root.left && !root.right) {
+                root = null;
+            } else {
+                //如果有左节点，而没有右结点;或者左右结点都有的时候
+                if (root.left) {
+                    //此时我们都会优先去选择左子树中的最大值去替换掉目标结点---为了保持搜索二叉树的有序性
+                    let maxLeft = searchMaxLeft(root.left);
+                    root.val = maxLeft.val;
+                    deleteRoot(root.left, maxLeft.val);
+                } else {
+                    //左节点不存在，只有右结点---用右结点中的最小值来替换
+                    var minLeft = searchMinRight(root.right);
+                    root.val = minLeft.val;
+                    deleteRoot(root.right, minLeft.val);
+                }
+            }
+            //注意：这里只能用else的情况，而不能每个都单独去使用if来判断---因为在执行完第一个if会接着执行第二个if，而此时root可能以及被改变了，所以进入完第一个if以后，可能会再次进入到第二个if中去
+        } else if (root.val > key) {
+            deleteRoot(root.left, key)
+        } else if (root.val < key) {
+            deleteRoot(root.right, key)
+        }
+        return root;
+    }
+
+    function searchMaxLeft(root) {
+        var curr = root;
+        while (root.right) {
+            curr = root.right;
+        }
+        return curr;
+    }
+
+    function searchMinRight(root) {
+        var curr = root;
+        while (root.left) {
+            curr = root.left;
+        }
+        return curr;
+    }
+    var res = deleteRoot(root, 4);
+    console.log(res);
+</script>
+
+</html>

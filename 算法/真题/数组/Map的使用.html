@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //1. 初始化
+    let map1=new Map();
+    //2. 赋值---通过键值对的形式，键可以是对象、数组、undefined等任意类型数据
+    map1.set({age:18,name:'张三'},1);
+
+    var arr=[
+        {age:19,name:'李四'}
+    ]
+    map1.set(arr,2);
+
+    var arr_1=[
+        ['age','20'],
+        ['name','王五']
+    ];
+    map1.set(arr_1,3);
+    map1.set(undefined,4);
+    console.log(map1);  //Map(4) {{…} => 1, Array(1) => 2, Array(2) => 3, undefined => 4}
+    //3. 获取值
+    console.log(map1.get(arr_1));   //结果为3
+    //4. 获取键值对的个数---长度
+    console.log(map1.size);   //结果为4
+    //5. has方法---判断是否有指定的键；输入键名，返回Boolean值
+    console.log(map1.has(arr));  //true
+    console.log(map1.has('arr'));  //false
+    //6. delete方法---删除指定的键；输入键名
+    map1.delete(arr_1);
+    //7. clear方法---清空所有的键
+    map1.clear();
+</script>
+</html>

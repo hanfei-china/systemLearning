@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 真题描述：定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。
+
+    // 示例:
+    // 输入: 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+    // 输出: 5 -> 4 -> 3 -> 2 -> 1 -> NULL
+
+    /**
+     * @param {ListNode} head
+     * @return {ListNode}
+     */
+    //分析:链表的操作其实就是对链表结点间的指针的处理
+    //这里链表的反转其实就是对结点的next进行处理
+    //思路:在遍历链表的时候,我们可以拿到每一个结点,此时可以提前拿到下一个结点,同时在遍历前就可以通过dummy拿到其前一个结点.那么我们就可以进行反转了
+    function fn(head) {
+        //创建第一个结点的前一个结点
+        var pre = null;
+        //创建遍历指针
+        //注意:这里不适用dummy了,因为用不到第一个结点的前驱结点
+        var cur = head;
+        //开始遍历---知道当前结点为空结点
+        while (cur) {
+            //拿到其下一个结点
+            let next = cur.next;
+            //反转指针
+            cur.next = pre;
+            //前驱结点移动---要在指针移动前移动
+            pre = cur;
+            //指针移动
+            cur = next;
+        }
+        //注意:反转后,头结点发生了变化了
+        return pre;
+    }
+
+    function Fm(val) {
+        this.val = val;
+        this.next = null;
+    };
+    var head = new Fm(1);
+    var two = new Fm(2);
+    var thr = new Fm(3);
+    var four = new Fm(4);
+    var five = new Fm(5);
+    head.next = two;
+    two.next = thr;
+    thr.next = four;
+    four.next = five;
+    var newHead = fn(head);
+    console.log(newHead);
+</script>
+
+</html>

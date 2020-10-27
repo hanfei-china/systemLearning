@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //模拟new的实现
+    //本质是在考察new的过程
+    /*
+        new过程：
+            1. 创建一个对象
+            2. 让this指向这个对象
+            3. 继承构造函数的属性和方法
+            4. 返回这个对象
+    */
+   function Fn() {
+       this.a=111;
+       this.b=222;
+       this.c=333;
+   }
+   Fn.prototype={
+       fn:function(){
+           console.log(this.a);
+       },
+       fnn:function(){
+           console.log(this.b)
+       },
+       foo:function(){
+           console.log(this.c)
+       }
+   }
+   function new_(fn) {
+       var obj={};
+       Fn.call(obj);    //继承构造函数的属性
+       obj.__proto__=Fn.prototype;    //将实例对象的对象原型指向构造函数的原型对象上
+       return obj;
+   }
+   var obj=new_(Fn);
+//    console.log(obj);
+//    obj.fn();
+//    obj.fnn();
+//    obj.foo();
+   obj.foo=function (){
+       console.log(123);
+   }
+   console.log(obj)
+   obj.foo();
+   var obj=new_(Fn);
+   obj.foo();
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const root = {
+        val: "A",
+        left: {
+            val: "B",
+            left: {
+                val: "D"
+            },
+            right: {
+                val: "E"
+            }
+        },
+        right: {
+            val: "C",
+            right: {
+                val: "F"
+            }
+        }
+    };
+    //二叉树的遍历就是利用递归
+    function fn(root) {
+        console.log(root.val);
+        if (root.left) {
+            fn(root.left);
+        }
+        if (root.right) {
+            fn(foot.right);
+        }
+    }
+</script>
+
+</html>

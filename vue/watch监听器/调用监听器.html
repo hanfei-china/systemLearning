@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./watch监听器函数.js"></script>
+<script>
+    //为什么在这里调用---为了使用window对象---因为在JS文件中没有全局对象
+    //JS语言中有一个global的全局对象，但是这个对象是和JS运行的环境有关的。当JS文件在浏览器中运行，那么就有一个全局对象是window。在nodejs中运行就有一个global的全局对象。
+
+    var obj = {
+        a: 1,
+        b: 2
+    };
+    var name = 3;
+    var watch = {
+        name() {
+            console.log('这是name属性')
+        },
+        'obj.a' () {
+            console.log('这是属性套属性的监听器')
+        }
+    }
+    watchAdd(window, watch);
+
+
+    obj.a = 4; //检测到这个属性的变化
+    console.log(obj.a); //值发生改变
+    obj.b = 5; //没有检测到变化
+    console.log(obj.b); //值发生改变
+    name = 666;
+</script>
+
+</html>

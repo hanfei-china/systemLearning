@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //     真题描述：给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+    // 注意：答案中不可以包含重复的三元组。
+
+    // 示例： 给定数组 nums = [-1, 0, 1, 2, -1, -4]， 满足要求的三元组集合为： [ [-1, 0, 1], [-1, -1, 2] ]
+
+
+    var nums = [-1, 0, 1, 2, -1, -4];
+    var target = 0;
+    var arr = fn(nums, target);
+    console.log(arr);
+
+
+    //解析
+    /*
+        三数求和
+            1. 双爆指针
+                1. 指针都需要排序---提供指针的移动方向及条件
+                2. 指针使用的都是两层及以上的循环嵌套的时候，同时，第一层循环肯定是不能被替代的
+            2. 求和都可以转换为求差
+    */
+    function fn(arr, target) {
+        //1. 排序
+        arr.sort((a, b) => {
+            return a - b;
+        })
+
+        var arr_1 = [];//用于盛放符合条件的情况
+
+        //2. 开始第一层循环
+        var len = arr.length;
+        //只能到倒数第三个，因为后面两个指针会把后面的拿到
+        for (let i = 0; i < len - 2; i++) {
+            //3. 开始第二层及第三层的循环---指针
+
+            //第一层重复情况
+            if (arr[i] === arr[i - 1]) {
+                continue;
+            }
+
+            //创建指针
+            var l = i + 1;
+            var k = len - 1;
+            //指针开始移动
+            //因为指针移动的顺序不定---当三数之和大于或小于0时，指针移动的情况不一样
+            //总的循环次数不定，所以使用while循环
+            //while循环重要的就是找到循环结束条件
+            //这里两个指针一定是左边的小于右边的，都不能相等---因为是不同的三个数---这也是为什么我们要处理各种重复的情况
+            while (l < k) {
+                //然后进行各种请款的判断
+
+                //1. 三数之和小于target---因为这个数组是排好序的，且两个指针的移动方向也是固定的----所以要让左边的指针向右移动（增大）
+                if (arr[i] + arr[l] + arr[k] < target) {
+                    l++;
+                    while (arr[l] === arr[l - 1]) {
+                        l++;
+                    }
+                } else if (arr[i] + arr[l] + arr[k] > target) {
+                    k--;
+                    while (arr[k] === arr[k + 1]) {
+                        k--;
+                    }
+                } else {
+                    arr_1.push([arr[i], arr[l], arr[k]]);
+                    k--;
+                    l++;
+                    while (arr[l] === arr[l - 1]) {
+                        l++;
+                    }
+                    while (arr[k] === arr[k + 1]) {
+                        k--;
+                    }
+                }
+            }
+        }
+        return arr_1;
+    }
+</script>
+
+</html>

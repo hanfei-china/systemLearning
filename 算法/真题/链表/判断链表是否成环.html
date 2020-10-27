@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //判断链表是否成环，本质上其实就是链表的末尾结点的next属性指向了链表其他的结点。
+    //思路一：因此，判断其是否成环，也就是遍历去寻找是否有这么一个结点，让链表的末尾结点的next属性指向它。
+    // 结论：错误的思路！！！  因为环形链表是找不到末结点的---每个结点的next属性都是存在的，没办法去遍历找到
+    //思路二：既然这样，我们可以自己去创建一个循环的标识，在每个结点上都创建一个属性。在遍历的过程中，加入又遍历到这个属性了，那么说明这个链表成环了。否则我们是不可能再次找到这个属性的。
+    function fn(head) {
+        var cur = head;
+        while (cur.next) {
+            //判断是否循环回来了
+            if (cur.circle) {
+                //成环了
+                return true
+                    //还没有成环，需要去创建用来查询是否成环的属性
+            } else {
+                //创建属性
+                cur.circle = true;
+                //指针移动
+                cur = cur.next;
+            }
+        }
+    }
+
+    function Fm(val) {
+        this.val = val;
+        this.next = null;
+    };
+    var head = new Fm(1);
+    var two = new Fm(2);
+    var thr = new Fm(3);
+    var four = new Fm(4);
+    var five = new Fm(5);
+    head.next = two;
+    two.next = thr;
+    thr.next = four;
+    four.next = five;
+    five.next = two;
+    var newHead = fn(head);
+    console.log(newHead);
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //这个其实和判断是否为定位环类似，当我们找到第一个成环的位置时，将这个结点返回即可
+    function fn(head) {
+        var cur = head;
+        while (cur.next) {
+            //判断是否循环回来了
+            if (cur.circle) {
+                //成环了---返回这个结点---即可得到环的起点
+                return cur;
+                //还没有成环，需要去创建用来查询是否成环的属性
+            } else {
+                //创建属性
+                cur.circle = true;
+                //指针移动
+                cur = cur.next;
+            }
+        }
+    }
+
+    function Fm(val) {
+        this.val = val;
+        this.next = null;
+    };
+    var head = new Fm(1);
+    var two = new Fm(2);
+    var thr = new Fm(3);
+    var four = new Fm(4);
+    var five = new Fm(5);
+    head.next = two;
+    two.next = thr;
+    thr.next = four;
+    four.next = five;
+    five.next = two;
+    var newHead = fn(head);
+    console.log(newHead);
+</script>
+
+</html>

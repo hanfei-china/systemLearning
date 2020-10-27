@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const root = {
+        val: "A",
+        left: {
+            val: "B",
+            left: {
+                val: "D"
+            },
+            right: {
+                val: "E"
+            }
+        },
+        right: {
+            val: "C",
+            right: {
+                val: "F"
+            }
+        }
+    };
+    //方法一：使用BFS实现层序遍历---BFS--队列
+    function fn1(root) {
+        var res = [];
+        var cur;
+        res.push(root);
+        while (res.length) {
+            cur = res.shift();
+            console.log(cur.val);
+            if (cur.left) {
+                res.push(cur.left);
+            }
+            if (cur.right) {
+                res.push(cur.right)
+            }
+        }
+    }
+    fn1(root);
+
+    //层序遍历的衍生问题---将每层的结点分别装入一个数组
+    //对于这个衍生问题，首先是中序遍历---BFS和队列实现；然后则是每一层的分离---那么其实在中序过程中，每次while循环其实对应的就是一层，所以我们就需要在进入到每一层的时候获取到其当前层的个数，然后按照这个个数来将队列中的元素推入到每一层对应的数组中即可
+    function fn2(root) {
+        //初始化队列
+        var quere = [];
+        var res = [];
+        quere.push(root);
+        //开始扫描
+        while (quere.length) {
+            //记录下每一层的长度，以便后面进行层数对应的数组推入
+            var len = quere.length;
+            //初始化一个对应层的结果数组
+            var arr = [];
+            for (let i = 0; i < len; i++) {
+                // 凡是在这个长度内，都要推入到对应的数组中，然后要将其子节点全部推入到队列中
+                var top = quere.shift();
+                arr.push(top.val);
+                if (top.left) {
+                    quere.push(top.left);
+                }
+                if (top.right) {
+                    quere.push(top.right);
+                }
+            }
+            //执行完毕这个循环时，当前层的所有元素都已经放入到对应数组完毕，需要进入到下一层了
+            res.push(arr);
+        }
+        return res;
+    }
+    var res = fn2(root);
+    console.log(res);
+</script>
+
+</html>

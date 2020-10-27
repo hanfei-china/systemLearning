@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // vue组件都是由三部分构成的：props、event和slot
+    // 1. props    用于传递属性
+    //      1. 子组件中不能去修改父组件通过props传入的值
+    //      2. 尽量使用对象的形式，这样在子组件中针对每个属性  设置类型、 默认值 或  自定义校验属性的值
+    // 2. slot    插槽（匿名插槽、命名插槽和作用域插槽），可用来传递HTML和数据等
+    //      1. 作用域插槽可以用来实现业务与组件的分离。
+    //3. event
+    //      1. 自定义事件：通过 $emit，就可以触发自定义的事件 on-click ，在父级通过 @on-click 来监听
+    //     <template>
+    //         <button @click="handleClick">
+    //              <slot></slot>
+    //          </button>
+    //      </template >
+    //         <script>
+    //             export default {
+    //                 methods: {
+    //                 handleClick(event) {
+    //                 this.$emit('on-click', event);
+    //             }
+    //                          }
+    //                                     }
+    //      <script>
+    //              特点：子组件已经注册好此类事件，父组件要使用的话就在父组件上为子组件注册一个自定义的事件。而这个自定义事件的名称也是子组件提前设定好的，这样子组件就可以提前在其事件的方法内部为$emit注册父组件的自定义的方法名称。
+
+    //         2. 原生事件---直接在父组件上声明，但是需要使用native事件修饰符
+    // 这种事件的特点是：为子组件整个组件注册的一个事件。如果不添加native事件修饰符，那么这个事件又变成了上面的自定义事件。比如直接@click，但是子组件中只监听了onclick事件，那么这个事件是监听不到的。
+
+
+    // 也就是说，在vue中，如果给组件注册事件。此时，要门使用native进行事件的修饰，为整个组件注册事件，要门就需要在子组件中对这个事件进行监听了，使用$emit进行调用。
+</script>
+
+</html>

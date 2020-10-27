@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    class Single {
+        constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            //这是创建了一个静态方法---也可以直接写到构造函数的函数体里（在类里面的话，就是写到constructor函数里面）
+        static getInstance() {
+            if (!Single.hasCreate) {
+                Single.hasCreate = new Single;
+            }
+        }
+    }
+
+
+    var a = Single.getInstance();
+    var b = Single.getInstance();
+    var c = new Single();
+    var d = new Single();
+
+    console.log(a === b); //true
+    console.log(c === d); //false---如果把判断的程序写到函数体内，那这个也是true了
+</script>
+
+</html>

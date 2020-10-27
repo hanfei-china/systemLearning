@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //防抖
+    var timer=null;
+    function fangdou() {
+        clearTimeout(timer);
+        timer=setTimeout(() => {
+            console.log(111);
+        }, 1000);
+    }
+
+    //节流
+    var aaa=true;
+    function jieliu() {
+        if (!aaa) {
+            return
+        }
+        aaa=false;
+        setTimeout(() => {
+            aaa=true;
+            console.log(222);
+        }, 1000);
+    }
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //真题描述：给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+    //           你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+    // 示例: 给定 nums = [2, 7, 11, 15], target = 9
+    //          因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1]
+
+    //解法一：暴力解法
+    function fn(arr, num) {
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[i] + arr[j] === num) {
+                    return [i, j];
+                }
+            }
+        }
+    }
+    var arr = [2, 7, 11, 15];
+    var target = 9;
+    var bbb = [];
+    bbb = fn(arr, target);
+    console.log(bbb);
+
+
+    //解法二：使用map
+    //原因：在暴力解法中，时间复杂度为O(n^2);空间复杂度为O(1);那么我们是否可以用空间来换取时间呢？也就是将时间复杂度降低为O(n);空间复杂度为O(n)；
+    //反思：以后做算法题的时候，要有这样的一种本能：当发现自己的代码里有两层循环时，先反思一下，能不能用空间换时间，把它优化成一层循环。
+
+    //使用对象来模拟map的效果
+    function fn_1(arr,num) {
+        var obj={};
+        for (let i = 0; i < arr.length; i++) {
+            //将第一次循环的值全部保存下来
+            //为什么要将数组的值作为对象的属性？因为我们直接去找的对象的属性
+            if (obj[num-arr[i]]!==undefined) {
+                return [obj[num-arr[i]],i];
+            }
+            obj[arr[i]]=i;
+        }
+    }
+    var ccc=fn_1(arr,26);
+    console.log(ccc);
+
+
+    //使用map来是实现
+    function fn_2(arr,num) {
+        var mp=new Map();
+        for (let i = 0; i < arr.length; i++) {
+            if (mp.has(num-arr[i])) {
+                return [mp.get(num-arr[i]),i]
+            }
+            mp.set(arr[i],i);            
+        }
+    }
+    var ddd=fn_2(arr,9);
+    console.log(ddd);
+</script>
+
+</html>

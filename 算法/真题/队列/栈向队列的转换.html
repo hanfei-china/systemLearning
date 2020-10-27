@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 题目描述：使用栈实现队列的下列操作：
+    // push(x)-- 将一个元素放入队列的尾部。
+    // pop()-- 从队列首部移除元素。
+    // peek()-- 返回队列首部的元素。
+    // empty()-- 返回队列是否为空。
+
+    // 示例: MyQueue queue = new MyQueue();
+    // queue.push(1);
+    // queue.push(2);
+    // queue.peek(); // 返回 1
+    // queue.pop(); // 返回 1
+    // queue.empty(); // 返回 false
+
+    // 说明:
+
+    // 你只能使用标准的栈操作-- 也就是只有 push to top, peek / pop from top, size, 和 is empty 操作是合法的。
+    // 你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
+    // 假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。
+
+
+    //分析：
+    /*
+        要通过栈的操作实现队列，那么就要先知道栈和队列的特性，然后根据其特性实现栈和队列的转换
+            栈---先进后出
+            队列---先进先出
+        所以，我们通过栈实现队列的话，其实就是将栈放入到另外一个栈，那么这个栈的顺序就和队列相同了
+        注意的是，创建了另外一个栈以后，要注意什么时候使用第二个栈，什么时候使用第一个栈
+    */
+
+    function MyQueue() {
+        //创建一个栈
+        this.stick1 = [];
+        //创建另一个栈，用于实现栈向队列的转变
+        this.stick2 = [];
+    }
+
+    MyQueue.prototype.push = function(data) {
+        //添加元素的时候，要添加到第一个栈中
+        this.stick1.push(data)
+    }
+
+    // MyQueue.prototype.peek=function(){
+    //     //此时，实际的效果就已经是队列的效果了，所以要使用第二个栈了
+    //     //首先要判断第二个栈中是否有元素---之前是否已经操作过第二个栈了
+    //     if (this.stick2.length>0) {
+    //         return this.stick2[this.stick2.length-1]
+    //     }else{
+    //         return this.stick1[0]
+    //     }
+    // }
+    MyQueue.prototype.peek = function() {
+        if (this.stick2.length > 0) {
+            return this.stick2[this.stick2.length - 1];
+        } else {
+            return this.stick1[0];
+        }
+    };
+
+    MyQueue.prototype.pop = function() {
+        //相当于删除队列的最先的那个
+        //先判断第二个栈是否有
+        if (this.stick2.length > 0) {
+            return this.stick2.pop();
+        } else {
+            //如果第二个栈没有了，那么就需要将第一个栈中的数放入到第二个栈中
+            var len = this.stick1.length;
+            for (let i = 0; i < len; i++) {
+                var num = this.stick1.pop();
+                this.stick2.push(num);
+            }
+            //然后将第二个栈的数取出
+            return this.stick2.pop()
+        }
+    }
+
+    MyQueue.prototype.empty = function() {
+        // 若 stack1 和 stack2 均为空，那么队列空
+        return !this.stack1.length && !this.stack2.length;
+    };
+
+    var queue = new MyQueue();
+    queue.push(1);
+    queue.push(2);
+    queue.push(3);
+    queue.push(4);
+    queue.push(5);
+    console.log(queue.peek());
+    console.log(queue.pop());
+    console.log(queue.pop());
+    console.log(queue.pop());
+    queue.push(6);
+    queue.push(7);
+    queue.push(8);
+    console.log(queue.peek());
+    console.log(queue.pop());
+    console.log(queue.pop());
+    console.log(queue.pop());
+</script>
+
+</html>

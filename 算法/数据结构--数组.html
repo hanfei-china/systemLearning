@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    //一：一维数组的创建、访问及遍历
+
+    //1.创建一个长度固定的空数组
+    var arr=new Array(7);
+    //2.创建一个长度固定，且内部的值都相同的数组
+    var arr_1=new Array(7).fill(2);
+    //3.访问
+    arr_1[3];
+    //4.遍历---目的：获取到数组的每一项，同时知道其对应的位置（下标）
+    for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i])        
+    }
+    arr.forEach((item,index) => {
+        console.log(item)
+    });
+    //forEach和for相比，功能一样，使用起来稍微简单一点。
+    arr.map(item=>{
+        return item+1;
+    })
+    //map和forEach相比，使用方法完全一直。但是map是在原数组的基础上，对每一项进行了处理，这个处理方法高度一致。然后将处理后的每一项组成了一个新的数组
+
+    //性能比较：for循环的性能最高。所以，在没有特殊需求的情况下，最好使用for循环去遍历数组
+
+
+
+    //二：二维数组---别名矩阵
+
+    //1.初始化二维数组---创建一个有固定长度且都有一个空数组为值的数组
+    //此时不能使用fill去填充了，因为此时填充的是数组---即引用类型。这种情况下修改第一个数组的值，后面的全都改了
+    var arr_2=new Array(7).fill([]);
+    //arr_2=[[],[],[],[],[],[],[]];
+    arr_2[0][0]=1;
+    //arr_2=[[1],[1],[1],[1],[1],[1],[1]];
+
+    //所以，二维数组的初始化要通过遍历来实现
+    //方法一：
+    var arr_3=new Array(7);
+    for (let i = 0; i < arr_3.length; i++) {
+        arr_3[i]=[];
+    }
+    //方法二：
+    var arr_4=new Array(7).fill(0).map(item=>new Array());
+</script>
+</html>

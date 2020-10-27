@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function fn(str) {
+        //1. 去除字符串的两端空格
+        var str_1 = str.trim();
+        //2. 创建一个正则，然后提取字符串中符合要求的字符段
+        var reg = /(^[-\+]?[0-9]*).*/;
+        var newStr = str_1.match(reg)[1];
+        //判断能否匹配到，如果不能，直接返回0
+        if (!newStr) {
+            return 0;
+        }
+        //4. 通过卡口来进行有效值的筛选
+        var max = Math.pow(2, 31) - 1;
+        var min = -max - 1;
+        var num=newStr-0;
+        if (num>max) {
+            return max;
+        }
+        if (num<min) {
+            return min;
+        }
+        return num;
+    }
+    var num=fn('-91283472332');
+    console.log(num);
+</script>
+
+</html>

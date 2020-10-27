@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str = 'yessey';
+    var str='yesabsey'
+    //方法一：利用回文字符串的定义---正反相同
+    //这个方法看起来好像简单，其实用到了好几个数组的方法。
+    function fn_1(str) {
+        var str_1 = str.split('').reverse().join('');
+        if (str_1 === str) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //方法二：利用回文字符串的特性---对称性
+    function fn_2(str) {
+        var l = str.length;
+        var arr=str.split('');
+        var btn = true;
+        for (let i = 0; i < l / 2; i++) {
+            if (arr[i]!==arr[l-1-i]) {
+                btn=false;
+            }
+        }
+        return btn;
+    }
+    console.log(fn_1(str));
+    console.log(fn_2(str));
+</script>
+
+</html>

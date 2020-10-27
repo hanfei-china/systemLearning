@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var obj = {
+            val: 1,
+            left: null,
+            right: {
+                val: 2,
+                left: {
+                    val: 3,
+                    right: null,
+                    left: null
+                },
+                right: {
+                    val: 4,
+                    right: null,
+                    left: null
+                }
+            }
+        }
+        //前序---使用迭代法---因为是按照一定顺序进行输出的---所以就联系到栈---按照想法的顺序去入栈
+
+    //栈：
+    // 1.入栈顺序
+    // 2.出栈的操作---当栈里有元素时，要如何操作---及这个迭代如何进行下去
+
+
+    //前序---注意根元素的处理---因为我们首先拿到的就是根元素，而入栈顺序是应该根元素最后入栈。所以就需要我们对根元素进行处理
+
+    function tree(obj) {
+        //创建一个栈
+        var stack = [];
+        //创建一个结果数组
+        var res = [];
+        //处理根元素---入栈
+        stack.push(obj);
+        //处理栈---一般都是当栈中有元素时的处理方法
+        while (stack.length) {
+            //取出栈顶元素，并放入到结果数组中
+            var curr = stack.pop();
+            res.push(curr.val);
+            //然后以此元素未根元素，进行左右结点的处理
+            if (curr.left) {
+                stack.push(curr.left);
+            }
+            if (curr.right) {
+                stack.push(curr.right);
+            }
+        }
+        return res;
+    }
+
+    // function preTree(root) {
+    //     var res = [];
+    //     var stack = [];
+    //     stack.push(root);
+    //     while (stack.length) {
+    //         var curr = stack.pop();
+    //         res.push(stack.val);
+    //         if (curr.left) {
+    //             stack.push(curr.left);
+    //         }
+    //         if (curr.right) {
+    //             stack.push(curr.right);
+    //         }
+    //     }
+    //     return res;
+    // }
+    var res1 = tree(obj);
+    console.log(res1);
+
+
+    //后序---顺序---左节点、右结点、根节点
+    //注意和前序基本顺序相反，所以可以考虑在往结果数组中放的时候，不从后面push，而是从前面推入。同时要注意左右结点的顺序，而这个顺序可以通过入栈的顺序来改变
+    function tree2(obj) {
+        var stack = [];
+        var res = [];
+        stack.push(obj);
+        while (stack.length) {
+            var curr = stack.pop();
+            res.unshift(curr.val);
+            if (curr.right) {
+                stack.push(curr.right)
+            }
+            if (curr.left) {
+                stack.push(curr.left)
+            }
+        }
+        return res;
+    }
+    var res2 = tree2(obj);
+    console.log(res2);
+
+    //中序---左->根->右
+    function middle(root) {
+        var stack = [];
+        var res = [];
+        var cur = root;
+        //第一次的while循环---保证中序的执行：从左结点到根结点，然后再到右结点
+        //第一层的限制条件：cur和stack。stack就是要将入栈的元素全部取出来。而cur的左右个人认为主要是针对根元素的-即初始状态。
+        //因为后面的cur有两种情况：叶子结点和非叶子结点。对应的就是要不要进去第二层内循环。非叶子结点的情况下就会进入搭配第二层的内循环中。
+        while (cur || stack.length) {
+            //第二层while循环---找到当前结点的最左边的子结点,并且将路过的各个结点放入到栈中---以便后面找到根节点和右结点
+            while (cur) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            res.push(cur.val);
+            cur = cur.right;
+        }
+        return res;
+    }
+    var res3 = middle(obj);
+    console.log(res3);
+
+    // function tree3(root) {
+    //     var stack = [];
+    //     var res = [];
+    //     var cur = root;
+    //     while (stack.length || cur) {
+    //         while (cur) {
+    //             stack.push(cur);
+    //             cur = cur.left
+    //         }
+    //         cur = stack.pop();
+    //         res.push(cur.val);
+    //         cur = cur.right;
+    //     }
+    // }
+</script>
+
+</html>

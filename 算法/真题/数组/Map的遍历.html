@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let mp=new Map();
+    mp.set('age',16);
+    mp.set('sex','女');
+    mp.set('name','貂蝉');
+    //一：使用forof遍历
+        //1. 遍历键---keys方法
+    for (const key of mp.keys()) {
+        console.log(key);  //age  sex  name
+    }
+        //2. 遍历值---values方法
+    for (const value of mp.values()) {
+        console.log(value);  //16  女  貂蝉
+    }
+        //3. 遍历键值---entries方法
+    for (const entry of mp.entries()) {
+        console.log(entry);    //['age',16]  ['sex','女']  ['name','貂蝉']
+    }
+    //二：
+</script>
+</html>

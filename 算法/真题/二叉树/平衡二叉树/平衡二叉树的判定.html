@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //平衡二叉树的定义：
+    /*
+        任意结点
+        左右子树高度差绝对值都不大于1---有的可能高度差有区别
+        二叉搜索树---有的要求有的不要求
+    */
+    var tree1 = {
+        val: 3,
+        left: {
+            val: 9
+        },
+        right: {
+            val: 20,
+            left: {
+                val: 15
+            },
+            right: {
+                val: 7
+            }
+        }
+    };
+    var tree2 = {
+        val: 1,
+        left: {
+            val: 2,
+            left: {
+                val: 3,
+                left: {
+                    val: 4
+                },
+                right: {
+                    val: 4
+                }
+            },
+            right: {
+                val: 3
+            }
+        },
+        right: {
+            val: 2
+        }
+    };
+    //对于本题，我们要做的是去判断任意一个结点的左右两边的高度差是否小于等于1.---任意---递归
+    //递归式：判断结点的左右两边的高度差是否为小于等于1，然后移动到下一个结点。同时返回当前结点的高度。
+    //递归边界：到达叶子结点或者叶子结点的子结点
+    function balanceRoot(root) {
+        var flag = true;
+        dfs(root);
+
+        function dfs(root) {
+            if (!root || !flag) {
+                return 0;
+            }
+            var left = dfs(root.left);
+            var right = dfs(root.right)
+            if (Math.abs(left - right) > 1) {
+                flag = false;
+                return 0
+            }
+            return Math.max(left, right) + 1;
+        }
+        return flag;
+    }
+    var one = balanceRoot(tree1);
+    var two = balanceRoot(tree2);
+    console.log(one);
+    console.log(two);
+</script>
+
+</html>

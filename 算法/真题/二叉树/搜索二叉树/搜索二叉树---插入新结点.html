@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const root = {
+        val: 6,
+        left: {
+            val: 4,
+            left: {
+                val: 3,
+                left: null,
+                right: null
+            },
+            right: {
+                val: 5
+            }
+        },
+        right: {
+            val: 8,
+            right: {
+                val: 9
+            },
+            left: {
+                val: 7,
+            }
+        }
+    };
+
+    function insert(root, point) {
+        if (!root) {
+            console.log(root);
+            root = point;
+            console.log(root);
+            return
+        }
+        if (root.val === point.val) {
+            return
+        }
+        if (root.val > point.val) {
+            insert(root.left, point);
+        }
+        if (root.val < point.val) {
+            insert(root.right, point);
+        }
+    }
+
+    var point = {
+        val: 2,
+    }
+    insert(root, point);
+    console.log(root);
+</script>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //     真题描述： 设计一个支持以下两种操作的数据结构：
+    //     void addWord(word)
+    //     bool search(word)
+    //     search(word) 可以搜索文字或正则表达式字符串，字符串只包含字母.或 a - z 。
+    // .可以表示任何一个字母。
+
+    //     示例: addWord("bad")
+    //     addWord("dad")
+    //     addWord("mad")
+    //     search("pad") -> false
+    //     search("bad") -> true
+    //     search(".ad") -> true
+    //     search("b..") -> true
+    //     说明:
+    //     你可以假设所有单词都是由小写字母 a - z 组成的。
+
+
+    //整体分析
+    /*
+        1. 功能上有两个：存储和搜索---所以要创建一个构造函数
+        2. 存储功能方便实现，但是搜索功能相对比较繁琐
+            1. 有两种搜索的情况---直接搜索文本，或者有正则
+            2. 搜索动作其实就是在一个数据中心看有没有这个数---数据结构：对象、数组、map、链表、队列、栈
+                1. 这里要用作访问，所以链表、队列、栈这些都不符合
+                2. 这个数据结构是先存储，然后查看是否有。---采用键值对的方式。---通过空间换时间。
+                    1. 如果是字符串，那么直接就可以查看
+                    2. 如果是正则表达式，那么就需要遍历这个对象了。
+                        1. 为了简化此遍历过程，我们可以将不同长度的字符串分开存储
+    */
+    function Fn() {
+        this.words = {};
+    }
+    //保存单词的
+    Fn.prototype.addWord = function (word) {
+        if (this.words[word.length]) {
+            this.words[word.length][word] = 1;
+        } else {
+            this.words[word.length] = {};
+            this.words[word.length][word] = 1;
+        }
+    }
+    Fn.prototype.search = function (word) {
+        //首先可以直接通过字符串长度判断是否有此字符串存储
+        if (!this.words[word.length]) {
+            return false;
+        }
+        //第一种情况：字符串
+        if (word.indexOf('.') === -1) {
+            if (!this.words[word.length][word]) {
+                return false;
+            }else{
+                return true;
+            }
+        } else {
+            //第二种情况：正则
+            var reg=new RegExp(word);
+            var a=false;
+            for (const key in this.words[word.length]) {
+                if (reg.test(key)) {
+                    a=true;
+                    break;
+                }else{
+                    console.log('reg',reg);
+                    console.log(key);
+                }
+            }
+            return a;
+        }
+    }
+
+    var obj = new Fn();
+    obj.addWord('ab');
+    obj.addWord('abc');
+    obj.addWord('abcd');
+    console.log('ab',obj.search('ab'));
+    console.log('abc',obj.search('abc'));
+    console.log('abcd',obj.search('abcd'));
+    console.log('abcde',obj.search('abcde'));
+    console.log('.bc',obj.search('.bc'));
+    console.log('a.cd',obj.search('a.cd'));
+
+</script>
+
+</html>

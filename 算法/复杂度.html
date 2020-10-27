@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function fn(arr) {
+        var n=arr.length;
+        for (let index = 0; index < n; index++) {
+            console.log(arr[i]);
+        }
+    }
+    //时间复杂度为O(n),空间复杂度为O(1);
+
+    function fn_1(n) {
+        var arr=[];
+        for (let i = 0; i < n; i++) {
+            arr[i]=i;
+        }
+    }
+    //时间复杂度为O(n),空间复杂度为O(n);
+    
+    function fn_2(n,m) {
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < m; j++) {
+                console.log(i,j);
+            }
+        }
+    }
+    //时间复杂度为O(n^2),空间复杂度为O(1);
+</script>
+</html>

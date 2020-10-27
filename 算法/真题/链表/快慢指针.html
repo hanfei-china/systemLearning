@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 真题描述：给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+
+    // 示例： 给定一个链表: 1 -> 2 -> 3 -> 4 -> 5, 和 n = 2.
+    // 当删除了倒数第二个结点后，链表变为 1 -> 2 -> 3 -> 5.
+    // 说明： 给定的 n 保证是有效的。
+
+    //思路：倒数第n个，那么一个快指针，一个慢指针，二者将其相差为n。当快指针到达尾部时，慢指针恰好走到预定位置。然后进行删除操作。
+    //同时，要判断预定位置的结点是否为头部，是的话返回的头部就是删除后的头部了。
+    function Fm(val) {
+        this.val = val;
+        this.next = null
+    }
+    var head = new Fm(1);
+    var two = new Fm(2);
+    var thr = new Fm(3);
+    var four = new Fm(4);
+    var five = new Fm(5);
+    head.next = two;
+    two.next = thr;
+    thr.next = four;
+    four.next = five;
+    var newHead = fn(head, 2);
+    console.log(newHead);
+    function fn(head, n) {
+        //创建dummy结点---因为可能要删除的就是头部结点
+        var dummy = {
+            val: null,
+            next: head
+        }
+        //创建两个快慢指针
+        var fast = dummy;
+        var slow = dummy;
+        //想让快指针走n步
+        while (n > 0) {
+            fast = fast.next;
+            n--;
+        }
+        //然后快慢指针一起移动，直到快指针走到尾部
+        while (fast.next) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        //然后删除指定指针，并返回头指针
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+</script>
+
+</html>

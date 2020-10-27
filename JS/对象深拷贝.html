@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var obj = {
+        a: {
+            a1: 1,
+            a2: 2
+        },
+        b: 3,
+        c: [{
+            c1: 1,
+            c2: 2
+        }, {
+            d1: 1,
+            d2: 2
+        }],
+        d: {
+            e1: null,
+            e2: 10
+        }
+    }
+
+    function deepCopy(obj, newObj) {
+        for (const key in obj) {
+            if (obj[key] instanceof Array) {
+                newObj[key] = []; //这里要前提声明，否则返回的就是一个对象了
+                newObj[key] = deepCopy(obj[key], newObj[key]);
+            } else if (obj[key] instanceof Object) {
+                newObj[key] = {};
+                newObj[key] = deepCopy(obj[key], newObj[key]);
+            } else {
+                newObj[key] = obj[key];
+            }
+        }
+        return newObj;
+    }
+    var newObj = deepCopy(obj, {});
+    console.log(newObj);
+</script>
+
+</html>

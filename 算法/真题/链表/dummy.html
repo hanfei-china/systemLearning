@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 真题描述：给定一个排序链表，删除所有含有重复数字的结点，只保留原始链表中 没有重复出现的数字。
+
+    // 示例 1:
+    // 输入: 1 -> 2 -> 3 -> 3 -> 4 -> 4 -> 5
+    // 输出: 1 -> 2 -> 5
+    // 示例 2:
+    // 输入: 1 -> 1 -> 1 -> 2 -> 3
+    // 输出: 2 -> 3
+
+    //分析：因为这里是要删除所有有重复的---一个都不留。而如果有这么一种情况：第一个和第二个相同，那我们其实没有办法去操作第一个结点。
+    //这时我们就需要去认为的创建一个头结点---其实就是以传入的首结点作为第二个结点，然后创建一个首结点。这样就可以操作传入的头结点了。
+    //这也就是dummy结点了。
+
+    //注意：其实在链表操作的时候，我们传入的链表都是以头部结点，然后我们通过循环就可以拿到每个结点了。
+    function Fnn(val) {
+        this.val=val;
+        this.next=null;
+    }
+    var head=new Fnn(1);
+    var two=new Fnn(2);
+    var thr=new Fnn(3);
+    var four=new Fnn(3);
+    var five=new Fnn(4);
+    var six=new Fnn(4);
+    var seven=new Fnn(5);
+    head.next=two;
+    two.next=thr;
+    thr.next=four;
+    four.next=five;
+    five.next=six;
+    six.next=seven;
+    fn(head);
+    console.log(head);
+    function fn(head) {
+        //特殊情况：这个链表为0结点或1个结点
+        if (!head || !head.next) {
+            return head;
+        }
+        //2. 创建dummy结点
+        let dummy = {
+            val: null,
+            next: head
+        };
+        var cur = dummy;
+        //这里循环从cur.next开始，因为我们可能会操作head结点，因此才创建了dummy结点。而我们不能从dummy结点开始，否则dummy结点的创建就没有意义了
+        while (cur.next.next) {
+            if (cur.next.val === cur.next.next.val) {
+                let val = cur.next.val;
+                while (cur.next.next) {
+                    if (cur.val = val) {
+                        cur.next=cur.next.next;
+                    }else{
+                        cur=cur.next;
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+</html>

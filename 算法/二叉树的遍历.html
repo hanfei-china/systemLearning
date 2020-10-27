@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //二叉树
+    var obj={
+        val:1,
+        left:{
+            val:2,
+            right:{
+                val:5,
+                right:null,
+                left:null
+            },
+            left:{
+                val:4,
+                right:null,
+                lfet:null
+            }
+        },
+        right:{
+            val:3,
+            left:null,
+            right:{
+                val:6,
+                right:null,
+                left:null
+            }
+        }
+    }
+    //二叉树的遍历
+    //要求：输出每个结点的值
+
+    //先序遍历    根节点--左子树--右子树
+    function fn(obj) {
+        if (!obj) {
+            //此时，这个结点为空
+            return 
+        }
+        console.log('此时遍历的结点是： '+obj.val);
+        fn(obj.left);
+        fn(obj.right);
+    }
+
+    //中序遍历    左子树--根节点--右子树
+    function fn_1(root) {
+        if (!root) {
+            return
+        }
+        //先遍历左子树
+        fn_1(root.left);
+        console.log('此时遍历的结点是： '+root.val);
+        fn_1(root.right);
+    }
+
+    //后序遍历    左子树--右子树--根节点
+    function fn_2(obj) {
+        if (!obj) {
+            return 
+        }
+        fn_2(obj.left);
+        fn_2(obj.right);
+        console.log('此时遍历的结点是： '+obj.val)
+    }
+    console.log('先序遍历');
+    fn(obj);
+    console.log('---------------------------------');
+    console.log('中序遍历');
+    fn_1(obj);
+    console.log('---------------------------------');
+    console.log('后序遍历');
+    fn_2(obj);
+    console.log('---------------------------------');
+</script>
+</html>

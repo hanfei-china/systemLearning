@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var arr = [-10, -3, 0, 5, 9];
+    //因为数组本身就是有序的，所以转换为搜索二叉树，其实就是将这个数组的中间元素作为根元素，左右两边分别为左右两个子树。
+    //按照这个思路其实就相当与一直在做二分法---递归
+    //递归式：将数组分成两部分，将中间元素作为根元素，左右两边分别再去进行分割
+    //递归边界：直到传入的这个数组长度小于等于1---直接返回这个元素
+    function turn(arr) {
+        if (arr.length === 0) {
+            return null
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        var mid = Math.floor(arr.length / 2);
+        var root = {
+            val: arr[mid],
+            right: {},
+            left: {}
+        };
+        var arrLeft = arr.slice(0, mid);
+        var arrRight = arr.slice(mid + 1);
+        root.left = turn(arrLeft);
+        root.right = turn(arrRight);
+        return root;
+    }
+    var res = turn(arr);
+    console.log(res);
+</script>
+
+</html>

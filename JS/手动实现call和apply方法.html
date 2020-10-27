@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var value='这是window';
+    function fn(a) {
+        console.log(this.value);
+        for (let i = 0; i < arguments.length; i++) {
+            console.log(arguments[i]) 
+        }
+    };
+    var obj={
+        value:'这是个对象'
+    };
+    //情形一：不传参的情况下
+    fn.call_=function (obj){
+        obj.a=fn;
+        obj.a();
+        delete obj.a;
+    };
+    // fn.call_(obj);
+
+
+    //情形二：传参的情况下
+    //问题点：不确定需要传入多少个参
+    //解决方法：使用arguments进行参数的为数组话
+    fn.call_two=function(params){
+        arguments[0].aaa=fn;
+        var arr=[];
+        for (let j = 1; j < arguments.length; j++) {
+            arr[j-1]=arguments[j]
+        }
+        //这是将参数进行了展开，是因为不能影响fn函数本身的内部参数
+        arguments[0].aaa(...arr);
+        delete arguments[0].aaa;
+    }
+    fn(1,2,3,4,5);
+    fn.call_two(obj,1,2,3,4,5);
+</script>
+</html>

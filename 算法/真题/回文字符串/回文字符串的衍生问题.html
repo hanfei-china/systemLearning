@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串
+    //如abcdba   返回为true
+
+    /*
+        回文字符串
+            1. 对称性
+            2. 双指针
+                1. 回文数的对称性---判断是否为回文数就可以通过指针来判断---这样可以减少循环的次数
+                2. 减一个或多个数后判断是否为回文数，其实就是通过指针找到不一样的，然后指针移动，再去判断是否为回文数
+    */
+    function fn(str) {
+        // 1. 这个字符串本身就是回文数
+        var arr = str.split('');
+        var len = str.length;
+        var l = 0;
+        var k = len - 1;
+        //因为中间可能会出现不是回文数的情况，会打断循环，所以使用while循环
+        while (l < k && arr[l] === arr[k]) {
+            l++;
+            k--;
+        }
+        //判断上面循环结束后，是否能确定为回文字符串
+        if (k === l || l === k + 1) {
+            return true
+        }
+        //如果不是回文字符串，那么就有两种情况：跳过左边的和跳过右边的
+        //不管是跳过左边的，还是跳过右边的。都是判断剩余的是否为回文字符串---相同的方法，只是传入的值不同
+        if (ff(l + 1, k)) {
+            return true
+        }
+        if (ff(l, k - 1)) {
+            return true
+        }
+        function ff(a, b) {
+            while (a < b && arr[a] === arr[b]) {
+                a++;
+                b--;
+            }
+            if (a === b || a === b + 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        //默认返回false
+        return false;
+    }
+    var str = 'abba';
+    var str = 'abcba';
+    var str = 'abcdceba';
+    console.log(str, fn(str));
+</script>
+
+</html>

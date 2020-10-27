@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    // 入参是一个数组
+    const permute = function(nums) {
+        // 缓存数组的长度
+        const len = nums.length
+            // curr 变量用来记录当前的排列内容
+        const curr = []
+            // res 用来记录所有的排列顺序
+        const res = []
+            // visited 用来避免重复使用同一个数字
+        const visited = {}
+            // 定义 dfs 函数，入参是坑位的索引（从 0 计数）
+        function dfs(nth) {
+            // 若遍历到了不存在的坑位（第 len+1 个），则触碰递归边界返回
+            if (nth === len) {
+                // 此时前 len 个坑位已经填满，将对应的排列记录下来
+                res.push(curr.slice())
+                return
+            }
+            // 检查手里剩下的数字有哪些
+            for (let i = 0; i < len; i++) {
+                // 若 nums[i] 之前没被其它坑位用过，则可以理解为“这个数字剩下了”
+                if (!visited[nums[i]]) {
+                    // 给 nums[i] 打个“已用过”的标
+                    visited[nums[i]] = 1
+                        // 将nums[i]推入当前排列
+                    curr.push(nums[i])
+                        // 基于这个排列继续往下一个坑走去
+                    dfs(nth + 1)
+                        // nums[i]让出当前坑位
+                    curr.pop()
+                        // 下掉“已用过”标识
+                    visited[nums[i]] = 0
+                }
+            }
+        }
+        // 从索引为 0 的坑位（也就是第一个坑位）开始 dfs
+        dfs(0)
+        return res
+    };
+
+
+
+    //这种题目就需要先分析出其数组逻辑，然后根据其数学模型去创建代码模型
+    //本题分析
+    /*
+        数学模型：先给第一个位置放入数字，那么第一个位置就有三种可能
+                然后给第二个位置放入数字，那么第二个位置就有两种可能
+                最后给第三个位置放入数字，第三个位置有一种可能
+    */
+
+    /*
+        代码思想：我们要一次给三个位置放入数字，那么每次放入数字都要进行   
+                1. 剩余可以有效使用的数字
+                2. 放入数字
+                3. 移动到下一个位置
+                4. 判断是否已经到达了最后一个位置
+        代码模型：
+                重复的进行相同的动作，穷举所有的可能-------递归
+                递归的使用方法：
+                        1. 找到递归式---重复的动作
+                        2. 找到递归边界---递归停止的条件
+                递归的表现形式---最终的结果就像是一个树结构，越往后越繁茂
+    */
+    function permute2(arr) {
+        //记录传入的数组的长度---用于遍历每个数字
+        var len = arr.length;
+        //创建一个对象，用于记录被使用过的数字
+        var visited = {};
+        //创建一个数组，用于保存每条线路的存放方法
+        var curr = [];
+        //创建一个数组，用于保存结果
+        var res = [];
+        //从第0个位置开始
+        dfs(0)
+        return res;
+
+
+        //创建一个递归函数
+        //传入的参数表示第几个位置
+        function dfs(nth) {
+            //2. 注意：这是按照思维逻辑，在后面才想到的
+            //递归边界
+            //什么时候停止递归呢？就是已经到了不存在的位置的时候。那为什么不在最后一个位置呢？因为那个时候还是要遍历去找最后的一个数字，所以还是使用的递归式
+            if (nth === len) {
+                //此时，curr里面保存的就是整体的路径
+                //slice并没有截取，这里只是复制了一下
+                res.push(curr.slice());
+                return
+            }
+
+            //1. 因为不知道是哪个位置，所以我们需要遍历到每个数字，然后判断它是否被使用过---这也需要我们去记录每个被使用了的数字---要做标记
+            for (let i = 0; i < len; i++) {
+                //然后判断每个数字是否被使用过了---通过一个对象来记录每个使用过的数
+                if (!visited[arr[i]]) {
+                    //如果没被使用，那么就可以使用了
+                    curr[nth] = arr[i];
+                    //记录这个使用了的数字
+                    visited[arr[i]] = 1;
+                    //然后运行到下一个位置
+                    dfs(nth + 1);
+                    //当上一步执行完毕以后，就说明当前位置的路已经走过一次了,那么就会进行下一次数字的循环，此时我们就要把当前的位置放开了
+                    curr.pop();
+                    //同时，在下一次的时候，我们会跳过当前的数字，然而当前的数字在后面还会使用到，所以我们就要放开当前那个数字
+                    visited[arr[i]] = 0;
+                }
+            }
+        }
+    }
+
+    /*
+        题1总结---递归的是每个位置---坑位
+                --而遍历的则是每个位置要放的数字---因为每个位置都可能放入任意一个数字
+    */
+    function deep(arr) {
+        var obj = {};
+        var res = [];
+        var curr = [];
+        digui(0);
+        return res;
+
+        function digui(nth) {
+            //递归边界
+            if (nth === arr.length) {
+                res.push(curr.slice());
+            }
+            //递归式
+            for (let i = 0; i < arr.length; i++) {
+                if (!obj[i]) {
+                    obj[i] = 1;
+                    curr.push(arr[i]);
+                    digui(nth + 1);
+                    obj[i] = 0;
+                    curr.pop();
+                }
+            }
+        }
+    }
+    var arr = [1, 2, 3];
+    // var res = permute2(arr);
+    var res = deep(arr);
+    console.log(res);
+</script>
+
+</html>

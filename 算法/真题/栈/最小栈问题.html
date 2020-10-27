@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 题目描述：设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
+
+    // push(x) —— 将元素 x 推入栈中。
+    // pop() —— 删除栈顶的元素。
+    // top() —— 获取栈顶元素。
+    // getMin() —— 检索栈中的最小元素。
+
+    // 示例:
+    // MinStack minStack = new MinStack();
+    // minStack.push(-2);
+    // minStack.push(0);
+    // minStack.push(-3);
+    // minStack.getMin(); --> 返回 - 3.
+    // minStack.pop();
+    // minStack.top(); --> 返回 0.
+    // minStack.getMin(); --> 返回 - 2.
+
+
+
+    // 这道题并不难，但是综合性很强，整个题做下来能够相对全面地考察到候选人对栈结构、栈操作的理解和掌握，是不少一面 / 少数二面面试官的心头好。
+
+    // 其中前三个操作：push、pop 和 top，我们在数据结构快速上手环节已经给大家讲过了，这里不多赘述。需要展开讲的是 getMin 这个接口，这个接口有时候会直接单独拎出来作为一道题来考察，需要大家对它的实现思路有一个真正扎实的掌握。
+
+    // getMin 要做的事情，是从一个栈里找出其中最小的数字。我们仍然是抛砖引玉，先说一个大部分人都能想到的思路：
+
+    // 初始化一个最小值变量，它的初始值可以设一个非常大的数（比如 Infinity），然后开始遍历整个栈。在遍历的过程中，如果遇到了更小的值，就把最小值变量更新为这个更小的值。这样遍历结束后，我们就能拿到栈中的最小值了。
+    // 这个过程中，我们对栈进行了一次遍历，时间复杂度无疑是 O(n) 。
+    //那么，为了优化这个遍历，我们可以在每次添加元素进栈的时候就创建一个递减的栈，这样，每次栈顶就是最小的值。
+    // 时间效率的提升，从来都不是白嫖，它意味着我们要付出更多的空间占用作为代价。在这道题里，如果继续沿着栈的思路往下走，我们可以考虑再搞个栈（stack2）出来作为辅助，让这个栈去容纳当前的最小值。
+
+    // 如何确保 stack2 能够确切地给我们提供最小值？ 这里我们需要实现的是一个从栈底到栈顶呈递减趋势的栈（敲黑板！递减栈出现第二次了哈）：
+    function MinStack() {
+        //创建一个栈
+        this.stack = [];
+        //创建一个递减栈
+        this.stack2 = [];
+    }
+    //创建这个构造函数的各个方法
+    MinStack.prototype.push = function(data) {
+        //添加元素
+        this.stack.push(data);
+        //创建一个递减栈---用于获取最小值
+        if (this.stack2[this.stack2.length - 1] > data || !this.stack2.length) {
+            this.stack2.push(data);
+        }
+    }
+    MinStack.prototype.pop = function() {
+        //添加元素
+        var data = this.stack.pop();
+        //如果这个值和当前的最小值相同，那么要出栈
+        if (this.stack2[this.stack2.length - 1] === data) {
+            this.stack2.pop();
+        }
+    }
+    MinStack.prototype.top = function() {
+        return this.stack[this.stack.length - 1];
+    }
+    MinStack.prototype.getMin = function() {
+        return this.stack2[this.stack2.length - 1];
+    }
+    var minStack = new MinStack();
+    minStack.push(-2);
+    minStack.push(0);
+    minStack.push(-3);
+    var min1 = minStack.getMin();
+    console.log(min1);
+    minStack.pop();
+    var top1 = minStack.top();
+    console.log(top1);
+    var min2 = minStack.getMin();
+    console.log(min2);
+</script>
+
+</html>
