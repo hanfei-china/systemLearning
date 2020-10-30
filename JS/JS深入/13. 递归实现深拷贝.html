@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var data = {
+        a: {
+            a1: 1,
+            a2: 2
+        },
+        b: [1, 2, 3, 4, 5],
+        c: 3
+    };
+
+    function deepCopy(data) {
+        var obj = {};
+        //1. 先拿到每个属性值
+        for (const key in data) {
+            //2. 然后判断是哪种数据类型
+            //2.1 有两个部分进行区分：是否为引用数据类型；如果是引用数据类型，那么是数组还是对象---因为数组或者对象在初始化的时候是不同的
+            if (data[key] instanceof Array) {
+                obj[key] = [];
+                //3. 然后继续进行深拷贝---递归
+                obj[key] = deepCopy(data[key]);
+            } else if (data[key] instanceof Object) {
+                obj[key] = {};
+                obj[key] = deepCopy(data[key]);
+            } else {
+                obj[key] = data[key];
+            }
+        }
+    }
+    var obj = deepCopy(data);
+    console.log(obj);
+</script>
+
+</html>
