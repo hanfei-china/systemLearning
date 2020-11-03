@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //模板标签的应用---oneLine
+    //需求：输入的时候是一行行的，但是输出的时候需要是单行的
+    let str = `
+	Hi,
+	Daisy!
+	I am
+	Kevin.
+`;
+    var res = message `
+	Hi,
+	Daisy!
+	I am
+	Kevin.
+`;
+
+    function message(str, ...strs) {
+        console.log(str);
+        console.log(strs);
+    }
+
+    //这里的应用没有写，可以去看GitHub上面的
+</script>
+
+</html>
