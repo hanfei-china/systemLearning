@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul {
+        padding: 20px;
+    }
+    
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f8f8;
+        margin: 20px 0;
+    }
+    
+    img {
+        width: 400px;
+        height: 200px;
+        background-color: #fff;
+        border: 1px solid red;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>
+            <img src="" alt="加载中" data-src="./images/1.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/2.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/3.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/4.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/5.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/6.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/7.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/8.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/9.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/10.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/11.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/12.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/13.jpeg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/14.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/15.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/16.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/17.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/18.jpg">
+        </li>
+        <li>
+            <img src="" alt="加载中" data-src="./images/19.jpg">
+        </li>
+    </ul>
+</body>
+<script>
+    //获取所有的元素
+    const imgs = document.getElementsByTagName('img');
+    //获取当前屏幕的可视区域。为了兼容IE9以下版本，后面用了document.documentElement.clientHeight
+    const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+    //监听屏幕的滚动事件，判断标签是否处于可视区域内
+    window.addEventListener('scroll', lazyLoad, false);
+    //创建一个num用于监听当前的位置
+    let num = 0;
+
+    function lazyLoad() {
+        //如何判断其是否在可视区域内呢？
+        //通过getBoundingClientRect方法可以获取到元素的大小及相对于视口的位置
+        for (let i = num; i < imgs.length; i++) {
+            if (imgs[i].getBoundingClientRect().top < viewHeight) {
+                var imgSrc = imgs[i].getAttribute('data-src');
+                imgs[i].src = imgSrc;
+                //这样的话下一次查看就会从上次查看结束的位置继续进行，而不是从头开始
+                num = i + 1;
+            }
+        }
+    }
+    // 当已进入页面的时候也要进行加载，而此时的屏幕的滚动事件是没有触发的，所以需要我们手动触发一下
+    lazyLoad();
+
+
+
+
+    //问题：当首页图片特别多，且还没有加载下来的时候，用户一直在滚动鼠标，那么就会一直触发滚动事件，然后一直有图片需要加载。
+
+    /*
+        优化思路：
+            当我们遇到频繁触发或执行的代码，优化的思路就是防抖或者节流
+    */
+</script>
+
+</html>
