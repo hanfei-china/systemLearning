@@ -40,7 +40,48 @@
 
 
 
-    function maxStr(str) {}
+    function maxStr(str) {
+        if (str.length == 0) {
+            return 0;
+        }
+        var len = str.length;
+        var res = []; //结果
+        var obj = []; //字典
+        for (let i = 0; i < len; i++) {
+            var zhi = str[i];
+            if (obj.indexOf(zhi) < 0) {
+                obj.push(zhi);
+            } else {
+                res.push(obj.length);
+                obj = obj.slice(obj.indexOf(zhi) + 1);
+                obj.push(zhi);
+            }
+        }
+        //同时要把最后一个窗口的值记录
+        res.push(obj.length);
+        var max = res[0];
+        for (let j = 1; j < res.length; j++) {
+            if (res[j] > max) {
+                max = res[j];
+            }
+        }
+        return max;
+    }
+    var str1 = 'abcabcbb'; //3
+    var str2 = 'bbbbb'; //1
+    var str3 = 'pwwkew'; //3
+    var str4 = ''; //0
+    var str5 = 'dvdf'; //这个预期为3，之前的代码预期为2---窗口的起始位置移动有问题
+    var res1 = maxStr(str1);
+    var res2 = maxStr(str2);
+    var res3 = maxStr(str3);
+    var res4 = maxStr(str4);
+    var res5 = maxStr(str5);
+    console.log(res1);
+    console.log(res2);
+    console.log(res3);
+    console.log(res4);
+    console.log(res5);
 </script>
 
 </html>
