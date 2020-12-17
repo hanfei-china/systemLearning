@@ -42,6 +42,21 @@
                     var func = function a(){}; // [object Function]
                     var math=new Math()      //[object Math]
                     var json=JSON.stringify({a:1,b:2})  //[object JSON]
+            3. instanceof
+                1. 使用实例
+                            1. obj instanceof Object   true
+                            2. arr instanceof Array  true
+                            3. arr instanceof Object true
+                2. 注意：
+                            1. 要想区分数组或者函数等，要注意他们本身还是一个对象
+                            2. 判断数据类型的时候，是大写的
+                3. 例子：
+                            console.log(obj instanceof Object); //true
+                            console.log(arr instanceof Array); //true
+                            console.log(fn instanceof Function); //true
+                            console.log(obj instanceof Array); //false
+                            console.log(arr instanceof Object); //true
+                            console.log(arr instanceof Function); //false
                     
 */
 
