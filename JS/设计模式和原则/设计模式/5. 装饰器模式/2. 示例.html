@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #model {
+        height: 200px;
+        width: 200px;
+        line-height: 200px;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <button id="open">打开弹框</button>
+    <button id="close">关闭弹框</button>
+</body>
+<script>
+    //需求：实现一个全局唯一的Modal弹框
+    const Model = (function() {
+        var model = null;
+        return function() {
+            if (!model) {
+                model = document.createElement('div');
+                model.innerHTML = '我是全局唯一的模态弹框';
+                model.id = 'model';
+                model.style.display = 'none';
+                document.body.appendChild(model);
+            }
+            return model
+        }
+    })();
+    let open = document.getElementById('open');
+    let close = document.getElementById('close');
+    // open.addEventListener('click', function() {
+    //     var model = new Model();
+    //     model.style.display = 'block';
+
+    // });
+    // close.addEventListener('click', function() {
+    //     var model = new Model();
+    //     model.style.display = 'none';
+    // })
+
+
+
+    /*
+        需求：这本来是一个单例模式的例子。但是，加入在实际生产中，我们需要按钮在按下去之后，弹框依旧展示，但是按钮的文字改变，样式变灰。如何做？
+    */
+    // 通过ES6的类实现---更能贴切面向对象的编程思想
+    class OpenModel {
+        onClick() {
+            //这些是旧的逻辑
+            var model = new Model();
+            model.style.display = 'block';
+        }
+    }
+    class Decorator {
+        constructor(openModel) {
+            this.openModel = openModel;
+        }
+        onClick() {
+            this.openModel.onClick(); //这是在调用上面的类的方法，因为已经通过constructor将上面的类的实例传入这个类当中了
+
+            //调用新逻辑
+            this.changeButtonStatus();
+        }
+        changeButtonStatus() {
+            this.changeButtonText();
+            this.disabledButton();
+        }
+        changeButtonText() {
+            const btn = document.getElementById('open');
+            btn.innerHTML = '我要改变';
+        }
+        disabledButton() {
+            const btn = document.getElementById('open');
+            btn.setAttribute("disabled", true);
+        }
+    }
+    //使用方法
+    var openModel = new OpenModel();
+    var decorator = new Decorator(openModel);
+    open.addEventListener('click', function() {
+        // openButton.onClick()
+        // 此处可以分别尝试两个实例的onClick方法，验证装饰器是否生效
+        decorator.onClick()
+    });
+    close.addEventListener('click', function() {
+        var model = new Model();
+        model.style.display = 'none';
+    })
+
+
+    /*
+        优点：这样，不管以后哪个地方使用这个按钮，有什么新的需求，都可以进行添加。
+        生产实践：react中的高阶组件
+    */
+</script>
+
+</html>

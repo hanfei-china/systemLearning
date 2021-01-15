@@ -37,3 +37,32 @@ function afterFunction(params) {
 
 
 /* 方法二：借助构造函数（ES6的类）---更加贴合面向对象的编程思维 */
+function beforeFunction() {
+    //原有的逻辑
+}
+
+/* 借助ES6的类（和构造函数的原理其实相同） */
+class OldObj {
+    oldFunction() {
+        //原有的逻辑
+    }
+}
+
+class NewObj {
+    constructor(oldObj) {
+            this.oldObj = oldObj; //将上面的那个类的实例传入，那么就可以在这个类中调用之前的逻辑了
+        }
+        //在旧逻辑中增加新逻辑，然后放在一起
+    afterFunction() {
+        this.oldObj.oldFunction();
+        this.newFunction();
+    }
+    newFunction() {
+        //新逻辑
+    }
+}
+
+/* 添加了装饰器后的使用方法 */
+var oldObj = new OldObj();
+var newObj = new NewObj(oldObj);
+newObj.afterFunction();
