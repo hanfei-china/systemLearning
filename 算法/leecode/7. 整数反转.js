@@ -61,6 +61,6 @@ function reverse2(num) {
     }
     return res;
 }
-console.log(reverse2(123456));
-console.log(reverse2(123400));
-console.log(reverse2(-123400));
+// console.log(reverse2(123456));
+// console.log(reverse2(123400));
+// console.log(reverse2(-123400));

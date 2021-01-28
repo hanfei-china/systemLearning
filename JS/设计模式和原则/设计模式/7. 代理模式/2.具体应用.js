@@ -18,6 +18,7 @@
     二：保护代理
         就是在1中的案例。我们在进行保护代理时，首要考虑的就是proxy，因为它就是为了拦截而生的。
     三：缓存代理---就是将某些可能后续会使用到的数据通过闭包或者其它手段进行存储。当下一次遇到的时候，不需要再次进行计算，而是直接从缓存中取出结果即可。
+    四：虚拟代理
 */
 
 // 缓存代理
@@ -60,3 +61,33 @@ let proxyAdd = (function() {
     结果：
         1. 15
 */
+
+
+
+
+
+
+//虚拟代理---预加载
+class PreLoadImage {
+    // 占位图的url地址
+    static LOADING_URL = 'xxxxxx'
+
+    constructor(imgNode) {
+        // 获取该实例对应的DOM节点
+        this.imgNode = imgNode
+    }
+
+    // 该方法用于设置真实的图片地址
+    setSrc(targetUrl) {
+        // img节点初始化时展示的是一个占位图
+        this.imgNode.src = PreLoadImage.LOADING_URL
+            // 创建一个帮我们加载图片的Image实例
+        const image = new Image()
+            // 监听目标图片加载的情况，完成时再将DOM上的img节点的src属性设置为目标图片的url
+        image.onload = () => {
+                this.imgNode.src = targetUrl
+            }
+            // 设置src属性，Image实例开始加载图片
+        image.src = targetUrl
+    }
+}
