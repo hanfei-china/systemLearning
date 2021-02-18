@@ -1,0 +1,48 @@
+pipeline {
+  agent {
+    node {
+      label 'master'
+    }
+  }
+
+  environment {
+    IMAGE_NAME = 'association-local-manage-app'
+    IMAGE_TAG = "feature-5373"
+    CONTAINER_NAME = "${IMAGE_NAME}_${IMAGE_TAG}"
+  }
+
+  stages {
+
+    stage('Build') {
+      agent {
+        docker {
+          image 'node'
+          label 'master'
+          args "-v ${NODE_RC}:/home/node/.npmrc -v ${NODE_REPO}:/home/node/.npm"
+          reuseNode 'true'
+        }
+      }
+      steps {
+        sh "npm config set registry https://registry.npm.taobao.org"
+        sh "npm install --verbose"
+        sh "npm run build --verbose"
+        sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+      }
+    }
+
+    stage('Deploy'){
+      steps {
+        script {
+          try{
+            sh 'docker rm -f ${CONTAINER_NAME}'
+          }catch(e){
+            echo '${CONTAINER_NAME} not alive'
+          }
+        }
+        sh 'docker run -d --network ${NETWORK} \
+            -v /etc/localtime:/etc/localtime:ro  \
+            --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}'
+      }
+    }
+  }
+}

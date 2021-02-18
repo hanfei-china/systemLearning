@@ -1,0 +1,201 @@
+.vsPre,
+.vsNext {
+  float: left;
+  height: 100%;
+  background-color: #1e7bcb;
+  background-color: rgba(30, 123, 203, 0.5);
+  -ms-opacity: 0;
+  opacity: 0;
+}
+
+.vsPre {}
+
+.vsNext {}
+
+.vsContainer {
+  float: left;
+  height: 100%;
+  width: 100%;
+}
+
+.vsItemDiv {
+  float: left;
+  height: 100%;
+  width: 230px;
+  text-align: center;
+  position: relative;
+  width: 200px;
+}
+
+.vsItemDiv div {
+  margin: auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+
+.vsItemBase {
+  /* background-image: url("/Areas/Screen/Content/images/voteScreen/base.png"); */
+  -ms-background-origin: content-box;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  -ms-background-size: contain;
+  background-size: contain;
+  background-position: 50%;
+  height: 80px;
+  bottom: 0;
+}
+
+.vsItemHeadImg {
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  -ms-background-size: cover;
+  background-size: cover;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transform: translate(-10px, -50%);
+  -moz-transform: translate(-10px, -50%);
+  -ms-transform: translate(-10px, -50%);
+  -o-transform: translate(-10px, -50%);
+  transform: translate(-10px, -50%);
+  border: solid 4px #ADADAD;
+  background-color: #fff;
+  background-position: 50%;
+}
+
+.vsItemTitle {
+  line-height: 40px;
+  bottom: 15px;
+  color: #fff;
+  white-space: nowrap;
+  position: relative !important;
+  padding-top: 37px;
+  font-size: 28px;
+  width: calc(100% - 40px);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -ms-background-size: contain;
+  background-size: contain;
+}
+
+.vsItemBar {
+  width: 88px;
+  border-radius: 3px;
+  bottom: 75px;
+  background: #FFB600;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.28);
+}
+
+.vsItemValue {
+  color: #fff;
+  top: -42px;
+  font-size: 25px;
+  width: 150px;
+  text-align: left;
+}
+
+.vsItemRank {
+  color: #ffd800;
+  top: -43px;
+  font-weight: bolder;
+  font-size: 16px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  -ms-background-size: contain;
+  background-size: contain;
+  width: 35px;
+  left: -37px !important;
+  margin: 0 !important;
+  position: absolute;
+}
+
+@-webkit-keyframes star {
+  0% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+  25% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star1.png");
+  }
+  50% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star2.png");
+  }
+  75% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star3.png");
+  }
+  100% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+}
+
+@-moz-keyframes star {
+  0% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+  25% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star1.png");
+  }
+  50% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star2.png");
+  }
+  75% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star3.png");
+  }
+  100% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+}
+
+@-ms-keyframes star {
+  0% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+  25% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star1.png");
+  }
+  50% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star2.png");
+  }
+  75% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star3.png");
+  }
+  100% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+}
+
+@-o-keyframes star {
+  0% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+  25% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star1.png");
+  }
+  50% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star2.png");
+  }
+  75% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star3.png");
+  }
+  100% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+}
+
+@keyframes star {
+  0% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+  25% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star1.png");
+  }
+  50% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star2.png");
+  }
+  75% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star3.png");
+  }
+  100% {
+    background-image: url("/Areas/Screen/Content/images/voteScreen/star0.png");
+  }
+}

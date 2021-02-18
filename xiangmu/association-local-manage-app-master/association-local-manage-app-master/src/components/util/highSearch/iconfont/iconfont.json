@@ -1,0 +1,86 @@
+{
+  "id": "2292488",
+  "name": "1",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10603480",
+      "name": "等于",
+      "font_class": "equal",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "14272043",
+      "name": "不等于",
+      "font_class": "budengyu",
+      "unicode": "e73e",
+      "unicode_decimal": 59198
+    },
+    {
+      "icon_id": "18456547",
+      "name": "version",
+      "font_class": "version",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "4847406",
+      "name": "不包含_选中",
+      "font_class": "bubaohan_xuanzhong",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "6934987",
+      "name": "包含于-01",
+      "font_class": "baohan_xuanzhong",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "7147895",
+      "name": "gt",
+      "font_class": "dayu2x",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "7147902",
+      "name": "lt",
+      "font_class": "xiaoyu2x",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "9348536",
+      "name": "buweikong",
+      "font_class": "weitijiao",
+      "unicode": "e737",
+      "unicode_decimal": 59191
+    },
+    {
+      "icon_id": "9348540",
+      "name": "weikong",
+      "font_class": "buweikong",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "9798774",
+      "name": "大于等于",
+      "font_class": "dayudengyu",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "9798990",
+      "name": "小于等于",
+      "font_class": "xiaoyudengyu",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    }
+  ]
+}

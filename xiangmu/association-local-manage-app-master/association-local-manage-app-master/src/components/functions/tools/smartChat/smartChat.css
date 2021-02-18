@@ -1,0 +1,187 @@
+@media screen and (max-width: 540px) {
+    .container {
+        height: 100vh!important;
+    }
+    .chatBody {
+        width: 100%!important;
+        height: 100%!important;
+    }
+    .chatMiddle {
+        height: 84%!important;
+    }
+    .chatTop {
+        height: 8%!important;
+        border-radius: 0!important;
+        background: none!important;
+        background-color: rgb(121, 201, 192)!important;
+    }
+    #chatBottom {
+        height: 8%;
+        width: 100%;
+        padding: 5px 10px 5px 15px;
+        border-radius: 0;
+        background-color: rgb(252, 252, 252);
+        display: flex;
+        align-items: center;
+    }
+    #chatBotImg {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    #chatBotText {
+        width: 65%;
+        height: 70%;
+        padding: 0 10px;
+        border: 0;
+        background-color: #fff;
+    }
+    #chatBotBtn {
+        height: 30px;
+        width: 48px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 14px;
+        text-align: center;
+        border: none;
+        color: #fff;
+        border-radius: 3px;
+    }
+    #chatItemText-left {
+        display: flex;
+        float: left;
+        align-items: flex-start;
+    }
+    .chatItemUserPhoto {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .userPerson {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+    #chatItemText-leftText {
+        background-color: #fff;
+        border: 1px solid rgb(237, 237, 237);
+        /* padding: 10px 15px; */
+        border-radius: 3px;
+        /* margin-right: 10%; */
+        max-width: calc(100% - 36px);
+        font-size: 14px;
+        position: relative;
+    }
+    #arrow {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-left: 1px solid rgb(237, 237, 237);
+        border-bottom: 1px solid rgb(237, 237, 237);
+        background-color: #fff;
+        top: 15px;
+        left: -5px;
+        transform: rotate(45deg);
+    }
+    #userArrow {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-left: 1px solid rgb(0, 122, 255);
+        border-bottom: 1px solid rgb(0, 122, 255);
+        background-color: rgb(0, 122, 255);
+        top: 15px;
+        right: -4px;
+        transform: rotate(-45deg);
+    }
+    .chatTop {
+        background-color: rgb(0, 122, 255)!important;
+    }
+    #chatItemText-right {
+        float: right;
+        padding: 10px 15px;
+        background-color: rgb(0, 122, 255);
+        color: #fff;
+        border-radius: 3px;
+        /* margin-left: 25%; */
+        max-width: 70%;
+        margin-right: 6px;
+        position: relative;
+    }
+    #arrowUser {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        /* border-left: 1px solid rgb(237, 237, 237);
+        border-bottom: 1px solid rgb(237, 237, 237); */
+        background-color: rgb(0, 122, 255);
+        top: 15px;
+        right: -4px;
+        transform: rotate(-45deg);
+    }
+     ::-webkit-scrollbar {
+        width: 0px!important;
+    }
+    .feedBack {
+        width: 100%;
+        display: flex;
+        border-top: 1px solid rgb(237, 237, 237);
+    }
+    .feedBackItem {
+        width: 50%;
+        box-sizing: border-box;
+        padding: 5px 0;
+        text-align: center;
+        color: rgb(96, 136, 230);
+    }
+    #leaveComments {
+        height: 90%;
+        background-color: #fff;
+    }
+    #commentItem {
+        height: 50px;
+    }
+    .commentInput {
+        background-color: #fff!important;
+        text-align: right!important;
+    }
+    #commentTextarea {
+        padding: 0;
+        height: 200px;
+    }
+    #phoneSubmitBtn {
+        position: absolute;
+        bottom: 20px;
+        right: 65px;
+        display: flex;
+        justify-content: center;
+    }
+    #clickSubmitBtn {
+        background-color: rgb(0, 122, 255);
+        text-align: center;
+        width: 248px;
+        height: 38px;
+        font-size: 16px;
+        color: #fff;
+        line-height: 38px;
+        border-radius: 19px;
+    }
+    .faceIcon {
+        top: -176px!important;
+    }
+    .iconMask {
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        width: 62px;
+        height: 30px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background-color: rgba(204, 204, 204, 0.3);
+    }
+}

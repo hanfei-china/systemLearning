@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  _zoom: 1;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+menu,
+section {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+input,
+select {
+  vertical-align: middle;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  color: #646464;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img,
+a img {
+  vertical-align: middle;
+  border: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+b,
+strong {
+  font-weight: normal;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+body,
+html {
+  width: 100%;
+  font-family: Arial, "microsoft yahei";
+  font-size: 14px;
+  max-width: 1920px;
+  min-width: 1250px;
+}
+
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.none {
+  display: none;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+#app .topbtnbox .el-input {
+  width: 200px;
+}
+
+#app .el-input__inner {
+  border-radius: 2px;
+}
+
+.text-left-table.el-table th>.cell, .text-left-table.el-table td>.cell, .text-left-table.el-table .cell  {
+  text-align: left;
+}
+
+.pd30 .el-tabs--card > .el-tabs__header .el-tabs__nav {
+  border: none!important;
+}
+.relationpane .el-tabs--card > .el-tabs__header .el-tabs__item {
+  border: none!important;
+}

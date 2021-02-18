@@ -1,0 +1,143 @@
+.website-pro {
+
+  @border: 1px dashed #409eff ;
+
+  outline: none !important;
+  touch-action: none;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: auto;
+
+
+  *{
+    outline: none !important;
+  }
+
+  &>.handle-bar{
+    position: absolute;
+    z-index: 3000;
+  }
+
+  &>.handle-float{
+    position: absolute;
+    z-index: -5000;
+    right: 0;
+    max-width: 82px;
+    background-color: rgba(255,255,255,1);
+    border-radius: 4px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    top: -35px;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  &.active,
+  &:hover{
+    &>.handle-float{
+      z-index: 5000;
+      opacity: 1;
+      width: 82px;
+      height: auto;
+      padding: 6px 10px;
+      border: 1px solid #ebeef5;
+      display: block;
+      outline: none !important;
+    }
+
+    &>.handle{
+      display: block;
+    }
+
+    &>.handle-bar{
+
+      &.handle-top{
+        top: 0;
+        left: 0;
+        right: 0;
+        border-top: @border;
+      }
+
+      &.handle-bottom{
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-bottom: @border;
+      }
+
+      &.handle-left{
+        top: 0;
+        bottom: 0;
+        left: 0;
+        border-left: @border;
+      }
+
+      &.handle-right{
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border-right: @border;
+      }
+    }
+  }
+
+
+
+  &>.handle {
+    display: none;
+    box-sizing: border-box;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #409eff;
+    background-color: #ffffff;
+    z-index: 5000;
+
+    &.handle-tl {
+      top: -4px;
+      left: -4px;
+      cursor: nw-resize;
+    }
+    &.handle-tm {
+      top: -4px;
+      left: 50%;
+      margin-left: -4px;
+      cursor: n-resize;
+    }
+    &.handle-tr {
+      top: -4px;
+      right: -4px;
+      cursor: ne-resize;
+    }
+    &.handle-ml {
+      top: 50%;
+      margin-top: -4px;
+      left: -4px;
+      cursor: w-resize;
+    }
+    &.handle-mr {
+      top: 50%;
+      margin-top: -4px;
+      right: -4px;
+      cursor: e-resize;
+    }
+    &.handle-bl {
+      bottom: -4px;
+      left: -4px;
+      cursor: sw-resize;
+    }
+    &.handle-bm {
+      bottom: -4px;
+      left: 50%;
+      margin-left: -4px;
+      cursor: s-resize;
+    }
+    &.handle-br {
+      bottom: -4px;
+      right: -4px;
+      cursor: se-resize;
+    }
+  }
+}

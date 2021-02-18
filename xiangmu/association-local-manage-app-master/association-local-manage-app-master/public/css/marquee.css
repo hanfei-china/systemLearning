@@ -1,0 +1,76 @@
+div.marqueeContainerDiv {
+    overflow: hidden;
+    position: relative;
+}
+
+    div.marqueeContainerDiv p {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+    }
+
+        div.marqueeContainerDiv p[direction=left] {
+            white-space: nowrap;
+        }
+
+        div.marqueeContainerDiv p[direction=top] {
+            word-wrap: break-word;
+        }
+
+@-webkit-keyframes marquee {
+    0% {
+        transform: translateX(200px);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@-moz-keyframes marquee {
+    0% {
+        transform: translateX(200px);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@-ms-keyframes marquee {
+    0% {
+        transform: translateX(200px);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@-o-keyframes marquee {
+    0% {
+        transform: translateX(200px);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(200px);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.marqueeElement {
+    -webkit-animation: marquee 4s linear infinite;
+    -moz-animation: marquee 4s linear infinite;
+    -ms-animation: marquee 4s linear infinite;
+    -o-animation: marquee 4s linear infinite;
+    animation: marquee 4s linear infinite;
+}

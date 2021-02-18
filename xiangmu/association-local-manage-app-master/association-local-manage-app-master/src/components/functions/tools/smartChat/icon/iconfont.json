@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3515834",
+      "name": "不在线",
+      "font_class": "buzaixian",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "7626597",
+      "name": "在线",
+      "font_class": "zaixian",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "9247850",
+      "name": "提示音S",
+      "font_class": "tishiyinS",
+      "unicode": "e840",
+      "unicode_decimal": 59456
+    },
+    {
+      "icon_id": "9247851",
+      "name": "提示音N",
+      "font_class": "tishiyinN",
+      "unicode": "e841",
+      "unicode_decimal": 59457
+    }
+  ]
+}

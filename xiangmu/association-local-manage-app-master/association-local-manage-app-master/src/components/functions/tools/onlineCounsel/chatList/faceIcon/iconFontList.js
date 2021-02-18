@@ -1,0 +1,3 @@
+export default [
+    '#icon-a','#icon-bizui','#icon-baiyan','#icon-aixin','#icon-ziya','#icon-daxiao','#icon-fadai','#icon-fankun','#icon-ganga','#icon-fennu','#icon-hanyan','#icon-jingsong','#icon-jingya','#icon-kaixin','#icon-liulei','#icon-mengbi','#icon-nanguo','#icon-shuizhuo','#icon-tiaopi','#icon-xiaochulei','#icon-xingxingyan','#icon-xieyan','#icon-xiasi','#icon-en','#icon-bushufu','#icon-bianbian','#icon-ganmao','#icon-liuhan','#icon-outu','#icon-santiaoxian','#icon-shoushang','#icon-tianshi','#icon-shuai','#icon-xiaodiaodaya','#icon-xiong','#icon-yiwen','#icon-yun','#icon-liubixie','#icon-shimo','#icon-dianzan','#icon-fendou','#icon-heng','#icon-kulou','#icon-leng','#icon-aixin1','#icon-xinsui','#icon-maren','#icon-zhutou'
+]
