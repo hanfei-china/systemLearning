@@ -3,7 +3,7 @@
         一：原型
             1. 首先，我们要先知道什么是原型。我们在创建了一个对象后会发现，这个对象即便我们不操作，本身也会携带一些属性或者方法。那么这些属性或者方法从哪儿来的？就是从原型来的。
             2. 那原型的属性和方法从哪儿来的呢？从构造函数而来。或者说我们在创建了一个构造函数以后，就已经同步的创建了一个原型。
-            3. 假设我们现在创建了一个构造函数Person，那么这个原型就是 Person.prototype
+            3. 假设我们现在创建了一个构造函数Person，那么这个原型就是 Person.prototype。Person.prototype.constructor=Person;
             4. 那么构造函数如何设置那些想要给对象共有的属性和方法呢？通过原型来实现。Person.prototype本身可以看作是一个对象，我们可以给它去添加属性和方法。如  Person.prototype.a=function(){};Person.prototype.b=2;
             5. 那么，什么时候我们会将属性或者方法放到这里呢？因为构造函数本身也可以给实例对象上添加属性或者方法。---一般是那些固定的属性以及那些方法。对于一些在创建对象时需要传参的属性，我们一般选择在构造函数内部执行。对于固定的属性  以及  方法  则选择放到原型上。为什么呢？---避免每次创建对象的时候都要去执行那么多代码。
         二：原型链
@@ -55,7 +55,7 @@
             1. length属性
             2. callee属性---在函数内部可以通过arguments的这个属性获取到函数本身---可以用来解决闭包问题
 
-    10. 创建对象的多种方法及优缺点
+    10. 继承的多种方法及优缺点
 */
 
 
@@ -150,8 +150,24 @@ function sameNew() {
     //这里是将new看作是一个函数，然后构造函数也作为一个参数传入
     var Fun = arguments[0]; //构造函数
     var obj = {};
-    var arr = Array.prototype.slice.call(arguments);
+    var arr = Array.prototype.slice.call(arguments, 1);
     Fun.apply(obj, arr);
     obj.__proto__ = Fun.prototype;
     return obj;
 }
+
+
+//组合继承
+function Parent(uname) {
+    this.name = uname
+}
+Parent.prototype.getName = function() {
+    console.log(this.name);
+}
+
+function Son(uname, age) {
+    Parent.call(this, uname);
+    this.age = age;
+}
+Son.prototype = new Parent();
+Son.prototype.constructor = Son; //要将子构造函数的原型指回去。因为前面为了通过原型去继承父构造函数的属性和方法，将子构造函数的原型指向了父构造函数的实例对象。那么为了保证原型链不出问题，我们必须把子

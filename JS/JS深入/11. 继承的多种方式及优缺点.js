@@ -58,7 +58,7 @@ function Son(name, age) {
     this.age = age;
 }
 Son.prototype = new Parent(); //子构造函数的prototype指向了父构造函数的实例
-Son.constructor = Son; //但是，子构造函数的原型的constructor属性必须指回去
+Son.prototype.constructor = Son; //但是，子构造函数的原型的constructor属性必须指回去
 
 
 
