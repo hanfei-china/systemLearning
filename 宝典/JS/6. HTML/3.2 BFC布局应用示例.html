@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p1{
+            width: 400px;
+            padding: 20px;
+            background-color: pink;
+            margin-bottom: 200px;
+        }
+        .s1{
+            height: 200px;
+            width: 200px;
+            background-color: rgb(112, 112, 199);
+            float: left;
+        }
+        .p2{
+            width: 400px;
+            padding: 20px;
+            background-color: pink;
+            overflow: hidden;
+        }
+        .s2{
+            height: 200px;
+            width: 200px;
+            background-color: rgb(112, 112, 199);
+            float: left;
+        }
+        .p3{
+            border: 1px solid red;
+            width: 400px;
+        }
+        .f{
+            float: left;
+            padding: 10px;
+            margin: 15px;
+            background-color: pink;
+        }
+        .p4{
+            border: 1px solid red;
+            width: 400px;
+        }
+        .f2{
+            float: left;
+            padding: 10px;
+            margin: 15px;
+            background-color: pink;
+        }
+        .text2{
+            overflow: hidden;
+        }
+        .p5{
+            border: 1px solid red;
+            width: 400px;
+            overflow: hidden;
+        }
+        .p5 div{
+            background-color: pink;
+            margin: 10px;
+            height: 50px;
+        }
+        .p6{
+            border: 1px solid red;
+            width: 400px;
+            overflow: hidden;
+        }
+        .p6 div{
+            background-color: pink;
+            margin: 10px;
+            height: 50px;
+        }
+        .mid2{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h2>清除浮动</h2>
+    <div class="p1">
+        <div class="s1">清除浮动前</div>
+    </div>
+    <div class="p2">
+        <div class="s2">清除浮动后</div>
+    </div>
+    <h2>清除文字环绕</h2>
+    <div class="p3" style="margin-bottom: 20px;">
+        <div class="f">浮动元素</div>
+        <div class="text">文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕</div>
+    </div>
+    <div class="p4">
+        <div class="f2">浮动元素</div>
+        <div class="text2">文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕文字环绕</div>
+    </div>
+    <h2>清除margin叠加</h2>
+    <div class="p5">
+        <div class="top"></div>
+        <div class="mid"></div>
+        <div class="bot"></div>
+    </div>
+    <div class="p6">
+        <div class="top2"></div>
+        <div class="mid2"></div>
+        <div class="bot2"></div>
+    </div>
+</body>
+</html>

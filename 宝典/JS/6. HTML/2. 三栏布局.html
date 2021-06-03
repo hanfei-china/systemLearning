@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .con1{
+            width: 600px;
+            height: 100px;
+            border: 1px solid red;
+            display: flex;
+        }
+        .con1 div{
+            height: 100px;
+        }
+        .con1 .left1{
+            width: 100px;
+            background-color: yellow;
+        }
+        .con1 .mid1{
+            flex: 1;
+            background-color: blue;
+        }
+        .con1 .right1{
+            width: 200px;
+            background-color: green;
+        }
+        .con2{
+            width: 600px;
+            height: 100px;
+            border: 1px solid red;
+            padding: 0 200px 0 100px;
+            box-sizing: border-box;
+        }
+        .con2 div{
+            height: 100px;
+            float: left;
+        }
+        .con2 .left2{
+            margin-left: -100px;
+            width: 100px;
+            background-color: blue;
+        }
+        .con2 .mid2{
+            width: 100%;
+            background-color: red;
+        }
+        .con2 .right2{
+            float: right;
+            width: 200px;
+            margin-right: -200px;
+            background-color: green;
+        }
+        .con3{
+            width: 600px;
+            height: 100px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .con3 div{
+            height: 100px;
+        }
+        .con3 .left3{
+            width: 100px;
+            background-color: red;
+            float: left;
+        }
+        .con3 .mid3{
+            background-color: green;
+            position: absolute;
+            top: 0;
+            left: 100px;
+            right: 200px;
+        }
+        .con3 .right3{
+            width: 200px;
+            background-color: blue;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="con1">
+        <div class="left1"></div>
+        <div class="mid1"></div>
+        <div class="right1"></div>
+    </div>
+    <div class="con2">
+        <div class="left2"></div>
+        <div class="mid2"></div>
+        <div class="right2"></div>
+    </div>
+    <div class="con3">
+        <div class="left3"></div>
+        <div class="mid3"></div>
+        <div class="right3"></div>
+    </div>
+</body>
+<script>
+    /*
+        三栏布局---左边的100，右边的200 剩下的为中间的
+            1. flex布局
+            2. 圣杯布局---浮动+负边距   父元素：padding
+                两边的浮动，中间的为文档流元素。因为标准文档流和浮动元素不能在一行的。这里我们通过设置父元素的padding，让中间元素沾满一行，然后让两边的元素通过负边距实现在一行。
+            3. 浮动+定位   两边的浮动，中间的定位
+    */
+</script>
+</html>

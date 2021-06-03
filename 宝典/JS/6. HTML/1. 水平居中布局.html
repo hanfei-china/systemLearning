@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p1{
+            width: 400px;
+            height: 400px;
+            margin:20px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .s1{
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .p2{
+            width: 400px;
+            height: 400px;
+            margin:20px;
+            border: 1px solid red;
+        }
+        .s2{
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+            margin: 150px auto;
+        }
+        .p3{
+            width: 400px;
+            height: 400px;
+            margin:20px;
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .s3{
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="p1">
+        <div class="s1"></div>
+    </div>
+    <div class="p2">
+        <div class="s2"></div>
+    </div>
+    <div class="p3">
+        <div class="s3"></div>
+    </div>
+</body>
+<script>
+    /*
+        水平垂直居中
+            1. 定位加移动
+            2. margin:高度的margin值   auto；---高度必须已知，宽度没必要
+            3. flex布局
+    */
+</script>
+</html>

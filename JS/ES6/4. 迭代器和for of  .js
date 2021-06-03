@@ -61,10 +61,10 @@ console.log(res.next());
 function forOf(obj, callback) {
     //首先先验证其是否能否被for of运行，验证传入的回调函数是否类型正确
     if (typeof obj[Symbol.iterator] != 'function') {
-        throw new TypeError('is not iterator')
+        throw new TypeError(obj+'is not iterator')
     }
     if (typeof callback != "function") {
-        throw new TypeError(callback + 'if not iterator');
+        throw new TypeError(callback + 'is not iterator');
     }
     var iterator = obj[Symbol.iterator](); //获取到那个迭代器
     var result = iterator.next(); //执行迭代器对象的next方法，获取到迭代器对象

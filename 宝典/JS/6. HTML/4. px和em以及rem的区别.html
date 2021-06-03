@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px;">
+    <h2>px</h2>
+    <div style="font-size: 16px;">px是绝对单位，相对于显示取屏幕的分别率而言的</div>
+    <h2>em</h2>
+    <div style="font-size: 14px;">
+        <div style="font-size: 1em;">按照所在父元素的font-size(父元素有设定)</div>
+    </div>
+    <div>
+        <div style="font-size: 1em;">按照所在父元素的font-size(父元素没有设定,那么就会一直向上寻找，直至有font-size的设定，如果一直没有，那么就按照浏览器的默认值)</div>
+    </div>
+    <div>这个就是按照父元素--body的值</div>
+    <h2>rem</h2>
+    <div>
+        <div style="font-size: 1rem;">1 rem = 1 HTML 的 font-size 值</div>
+    </div>
+</body>
+<script>
+    /*
+        em:相对于当前对象内文本尺寸而言
+            1. 使用em时，会从当前元素一直向上找，直至找到一个有font-size设定的父级元素，然后根据这个来进行比例兑换。如果一直没有，那么就会按照浏览器的默认font-size进行兑换。
+
+        rem：相对于html的font-size而言的
+            1. 如果html有设定font-size，直接使用
+            2. 如果html没有设定font-size，那么同样是按照浏览器的默认font-size来进行
+            3. 1 rem =HTML 的 font-size 的 值
+
+            应用：
+                1. 一般在需要适配移动端的时候，我们首先会检测屏幕大小。一般移动端的都小于750，但是如果大于750，我们也会按照750计算。---因此移动端的设计图一般也是按照750设计的。
+                2. 此时我们就会将HTML的font-size设置为屏幕宽的7.5分之一。这样我们就可以按照设计图来进行的。所有的尺寸都是设计图的100分之一。如果设计图是按照350的，那么我们所有的尺寸都是设计图的50分之一
+                3. 示例：
+                if(deviceWidth > 750) deviceWidth = 750;
+                document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    */
+</script>
+</html>

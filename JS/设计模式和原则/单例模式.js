@@ -18,6 +18,7 @@ class Single {
         if (!Single.hasCreate) {
             Single.hasCreate = new Single;
         }
+        return Single.hasCreate;
     }
 }
 
@@ -28,3 +29,4 @@ var d = new Single();
 
 console.log(a === b); //true
 console.log(c === d); //false---如果把判断的程序写到函数体内，那这个也是true了
+console.log(a);
